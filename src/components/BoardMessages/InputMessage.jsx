@@ -1,6 +1,6 @@
 const InputMessage = () => {
   return (
-    <div className='flex flex-row items-center h-1/6 border-2 pl-6 pr-6'>
+    <div className='flex flex-row items-center h-1/6 border-t pl-6 pr-6'>
       <div className='flex h-11 w-5/6 '>
         <input
           placeholder="Mensagem"
