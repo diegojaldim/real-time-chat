@@ -1,12 +1,39 @@
 import './App.css';
 import Chat from './components/Chat';
 import Login from './components/Login';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import React, {
+  useEffect,
+  useState,
+} from 'react';
 
 const App = () => {
+
+  const [user, setUser] = useState('');
+
+  useEffect(() => {
+    const storage = localStorage.getItem('user');
+    if (storage) {
+      setUser(JSON.parse(storage));
+    }
+  }, []);
+
+  const verifyIfUserIsLogged = () => {
+    if (user) {
+      return (
+        <Chat />
+      )
+    }
+    
+    return <Login />
+  }
+
   return (
     <div className='flex justify-center items-center h-screen bg-gradient-to-b from-green-200 to-blue-200'>
-      {/* <Chat /> */}
-      <Login />
+      {verifyIfUserIsLogged()}
+
+      <ToastContainer />
     </div>
   );
 }

@@ -2,34 +2,37 @@ import React, {
   useState,
 } from 'react';
 import {
-  post
-} from '../infra/http-client';
+  login
+} from '../api/login.api';
+import {
+  error,
+} from '../helpers/toast.helper';
 
 const Login = () => {
-  const [login, setLogin] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const onChangeLogin = (e) => {
-    setLogin(e.target.value);
+  const onChangeEmail = (e) => {
+    setEmail(e.target.value);
   }
 
   const onChangePassword = (e) => {
     setPassword(e.target.value);
   }
 
-  const submit = (e) => {
+  const submit = async (e) => {
     e.preventDefault();
+    
+    try {
+      const { data } = await login({
+        email,
+        password
+      });
 
-    post('/auth/login', {
-      email: login,
-      password
-    }).then((result) => {
-      console.log(result);
-    }).catch((err) => {
-      console.error(err);
-    });
-
-    // console.log(login, password);
+      localStorage.setItem('user', JSON.stringify(data));
+    } catch (err) {
+      error('E-mail ou senha inválidos!');
+    }
   }
 
   return (
@@ -44,8 +47,8 @@ const Login = () => {
           className="outline-none p-2 rounded-sm mt-10 mb-2"
           type="email"
           placeholder="E-mail"
-          onChange={onChangeLogin}
-          value={login}
+          onChange={onChangeEmail}
+          value={email}
         />
 
         <input
