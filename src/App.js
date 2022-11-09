@@ -19,7 +19,14 @@ const App = () => {
       )
     }
 
-    return <Login />
+    return <Login 
+      setUserData={setUserData}
+    />
+  }
+
+  const setUserData = (data) => {
+    localStorage.setItem('user', JSON.stringify(data));
+    setUser(data);
   }
 
   useEffect(() => {

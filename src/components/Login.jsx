@@ -8,7 +8,7 @@ import {
   error,
 } from '../helpers/toast.helper';
 
-const Login = () => {
+const Login = (props) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
@@ -50,7 +50,8 @@ const Login = () => {
         password
       });
 
-      localStorage.setItem('user', JSON.stringify(data));
+      props.setUserData(data);
+
       onChangeLoading(false);
     } catch (err) {
       error('E-mail ou senha inválidos!');
