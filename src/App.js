@@ -12,22 +12,22 @@ const App = () => {
 
   const [user, setUser] = useState('');
 
-  useEffect(() => {
-    const storage = localStorage.getItem('user');
-    if (storage) {
-      setUser(JSON.parse(storage));
-    }
-  }, []);
-
   const verifyIfUserIsLogged = () => {
     if (user) {
       return (
         <Chat />
       )
     }
-    
+
     return <Login />
   }
+
+  useEffect(() => {
+    const storage = localStorage.getItem('user');
+    if (storage) {
+      setUser(JSON.parse(storage));
+    }
+  }, []);
 
   return (
     <div className='flex justify-center items-center h-screen bg-gradient-to-b from-green-200 to-blue-200'>
