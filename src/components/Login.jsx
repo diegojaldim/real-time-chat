@@ -27,6 +27,21 @@ const Login = () => {
 
   const submit = async (e) => {
     e.preventDefault();
+
+    if (loading) {
+      return;
+    }
+
+    if (email === '') {
+      error('Preencha o e-mail');
+      return;
+    }
+
+    if (password === '') {
+      error('Preencha a senha');
+      return;
+    }
+
     onChangeLoading(true);
 
     try {
