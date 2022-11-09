@@ -1,8 +1,14 @@
-import React from 'react';
+import React, {
+  useEffect,
+  useState,
+} from 'react';
+import {
+  listUsers
+} from '../../api/chat.api';
 
 const Users = (props) => {
 
-  const users = [
+  const data = [
     {
       id: 1,
       avatar: 'https://i.imgur.com/n0bP3CB.jpeg',
@@ -11,7 +17,7 @@ const Users = (props) => {
     {
       id: 2,
       avatar: 'https://i.imgur.com/n0bP3CB.jpeg',
-      name: 'Usuário 2',
+      name: 'Usuário 2 aa',
     },
     {
       id: 3,
@@ -20,11 +26,23 @@ const Users = (props) => {
     }
   ];
 
+  const [users, setUsers] = useState(data);
+
   const avatarBackgroundStyle = {
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center',
     backgroundSize: 'cover',
   };
+
+  const listUsersApi = async () => {
+    const data = await listUsers();
+    console.log('oi', data);
+  }
+
+  useEffect(() => {
+    listUsersApi();
+    console.log('get users');
+  }, [users]);
 
   return (
     <div className='flex w-1/4 p-2 overflow-auto'>
