@@ -22,6 +22,7 @@ const UserItem = (props) => {
   return (
     <li
       className='flex flex-row items-center border-b cursor-pointer hover:bg-slate-200'
+      onClick={() => props.onClick(props.id)}
     >
       <div className='flex flex-col items-center w-1/4 border-1 pl-2 pr-2 pt-2 pb-2'>
         <div
