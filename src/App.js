@@ -1,6 +1,6 @@
 import './App.css';
 import Chat from './components/Chat';
-import Login from './components/Login';
+import Login from './components/Login/Index';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import React, {
